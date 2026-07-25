@@ -10,6 +10,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+
 from src.canonical.model import CanonicalDocument
 from src.chat.answer import answer_question
 from src.chat.index import RetrievalIndex
@@ -95,7 +99,19 @@ def cmd_chat(args):
     def ask(question: str):
         trace = Trace(request_type="chat")
         log(logger, "info", "chat question received", request_id=trace.request_id, question=question)
-        result = _ask_one(question, index, trace)
+        try:
+            result = _ask_one(question, index, trace)
+        except Exception as e:
+            # A failed LLM call (rate limit, timeout, bad key, ...) must not crash the
+            # session or vanish silently -- it gets its own finished trace with the
+            # error attached, and a clear message instead of a raw traceback.
+            trace.finish(question=question, error=f"{type(e).__name__}: {e}")
+            log(logger, "error", "chat request failed", request_id=trace.request_id, error=str(e))
+            print(f"\n> {question}\n")
+            print(f"[request failed: {type(e).__name__}: {e}]")
+            print(f"(trace: traces/{trace.request_id}.json -- see 'had_error' / span 'error' fields)")
+            return None
+
         trace.finish(
             question=question, answer_preview=result.answer[:300],
             citations_valid=result.citations_valid, citations_invalid=result.citations_invalid,

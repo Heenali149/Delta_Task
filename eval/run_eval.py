@@ -14,6 +14,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from dotenv import load_dotenv
+
+load_dotenv(ROOT / ".env")
+
 from eval.metrics import evaluate_chat, evaluate_delta
 from src.chat.answer import answer_question
 from src.chat.index import RetrievalIndex
@@ -83,6 +87,9 @@ def print_scorecard(delta, delta_eval, chat_eval, model_name):
     print(f"  Answer correctness: {chat_eval.answer_correctness:.3f}")
     print(f"  Groundedness (valid citations / claimed citations): {chat_eval.groundedness:.3f}")
     for q in chat_eval.per_question:
+        if q.get("error"):
+            print(f"    [ERROR] {q['id']}: {q['question']}\n         {q['error']}")
+            continue
         mark = "OK" if q["correct"] else "MISS"
         print(f"    [{mark}] {q['id']}: {q['question']}")
         if q["citations_invalid"]:

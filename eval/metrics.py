@@ -70,7 +70,21 @@ def evaluate_chat(qa_items: list[dict], run_fn) -> ChatEvalResult:
     total_grounded_ratio = 0.0
 
     for qa in qa_items:
-        result = run_fn(qa["question"])
+        try:
+            result = run_fn(qa["question"])
+        except Exception as e:
+            # A single failed LLM call (rate limit, timeout, ...) must not abort the
+            # whole scorecard -- it's recorded as a failure for this question and
+            # eval continues, matching the "failures are visible, not swallowed"
+            # observability requirement.
+            per_question.append(
+                {
+                    "id": qa["id"], "question": qa["question"], "correct": False,
+                    "answer": None, "citations_valid": [], "citations_invalid": [],
+                    "grounded_ratio": 0.0, "error": f"{type(e).__name__}: {e}",
+                }
+            )
+            continue
         answer_upper = result.answer.upper()
         is_correct = any(term.upper() in answer_upper for term in qa["expect_answer_contains"])
         correct_count += int(is_correct)
