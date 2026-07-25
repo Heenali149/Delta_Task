@@ -8,6 +8,30 @@ Built as a take-home under a tight same-day deadline — scope was cut
 deliberately (see "What we cut and why"). This README tells you exactly
 what works, what's stubbed, and what's honestly still broken.
 
+## Live demo
+
+A small Flask UI in `api/` wraps the delta report and grounded chat over the
+precomputed `pair_001` sample session, deployable on Vercel as-is:
+
+1. Push this repo to GitHub (already done if you're reading this on
+   `Heenali149/Delta_Task`).
+2. [Import the repo into Vercel](https://vercel.com/new) — no framework
+   preset needed, `vercel.json` handles the Python build.
+3. Optional: in the Vercel project's Environment Variables, set
+   `LLM_PROVIDER=groq` and `GROQ_API_KEY=...` for live LLM answers. With no
+   key set, chat automatically runs on the deterministic mock LLM fallback
+   (same behavior as running locally without a key) — the app never crashes
+   for lack of a key.
+4. Deploy. The UI never re-ingests PDFs at runtime (no PyMuPDF in
+   `api/requirements.txt`); it loads the checked-in
+   `api/data/pair_001/{canonical_a,canonical_b,delta}.json` and runs
+   retrieval + LLM chat live per request. Regenerate those files with
+   `make run` (then copy `output/pair_001/*` into `api/data/pair_001/`) if
+   the sample pair ever changes.
+
+Run it locally the same way with `python api/index.py` (after
+`pip install -r api/requirements.txt`).
+
 ## Quick start
 
 ```bash

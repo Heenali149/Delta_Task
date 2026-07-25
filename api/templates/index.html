@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>delta-chat — grounded P&amp;ID delta assistant</title>
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#12151c; --panel-2:#171b24; --border:#252a35;
+    --text:#e7eaf0; --muted:#8891a3; --accent:#5b8def; --accent-2:#3ecf8e;
+    --danger:#e5637a; --warn:#e5b567; --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+  header{padding:20px 28px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  header h1{font-size:18px;margin:0;font-weight:650;letter-spacing:.2px}
+  header h1 span{color:var(--accent)}
+  header p{margin:2px 0 0;color:var(--muted);font-size:13px}
+  .badge{font-size:11px;font-family:var(--mono);padding:3px 9px;border-radius:20px;
+    border:1px solid var(--border);color:var(--muted);white-space:nowrap}
+  .badge.live{color:var(--accent-2);border-color:#1f4a38;background:#0f2019}
+  .badge.mock{color:var(--warn);border-color:#4a3b1f;background:#20190f}
+
+  main{max-width:1180px;margin:0 auto;padding:22px 28px 60px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .stat .n{font-size:22px;font-weight:650}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .stat.added .n{color:var(--accent-2)} .stat.removed .n{color:var(--danger)} .stat.modified .n{color:var(--warn)}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    display:flex;flex-direction:column;overflow:hidden;height:min(72vh,720px)}
+  .panel-head{padding:12px 16px;border-bottom:1px solid var(--border);
+    font-size:13px;font-weight:600;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+  #report{flex:1;overflow:auto;padding:14px 16px;font-family:var(--mono);
+    font-size:12.5px;line-height:1.55;white-space:pre-wrap;color:#c7cdda}
+
+  #chat{flex:1;overflow:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+  .msg{max-width:92%;padding:10px 13px;border-radius:10px;font-size:13.5px;line-height:1.5}
+  .msg.user{align-self:flex-end;background:var(--accent);color:#08101f;border-bottom-right-radius:2px}
+  .msg.bot{align-self:flex-start;background:var(--panel-2);border:1px solid var(--border);
+    border-bottom-left-radius:2px;white-space:pre-wrap}
+  .msg.bot.err{border-color:#4a2430;color:var(--danger)}
+  .cites{margin-top:8px;font-size:11px;color:var(--muted);font-family:var(--mono)}
+  .cites .bad{color:var(--danger)}
+
+  .chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px}
+  .chip{font-size:11.5px;color:var(--muted);border:1px solid var(--border);background:var(--panel-2);
+    padding:5px 10px;border-radius:20px;cursor:pointer}
+  .chip:hover{color:var(--text);border-color:var(--accent)}
+
+  form#askform{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--border)}
+  #q{flex:1;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;
+    color:var(--text);padding:10px 12px;font-size:13.5px;outline:none}
+  #q:focus{border-color:var(--accent)}
+  button{background:var(--accent);color:#08101f;border:none;border-radius:8px;
+    padding:0 18px;font-weight:600;font-size:13.5px;cursor:pointer}
+  button:disabled{opacity:.5;cursor:default}
+
+  footer{max-width:1180px;margin:0 auto;padding:0 28px 40px;color:var(--muted);font-size:12px}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1><span>delta-chat</span> — grounded P&amp;ID delta assistant</h1>
+    <p>{{ pid_a }} &rarr; {{ pid_b }}</p>
+  </div>
+  <span class="badge {{ 'mock' if llm_is_mock else 'live' }}">
+    llm: {{ llm_model }}{{ ' (fallback, no key set)' if llm_is_mock else '' }}
+  </span>
+</header>
+
+<main>
+  <div class="stats">
+    <div class="stat"><div class="n">{{ summary.total }}</div><div class="l">total changes</div></div>
+    <div class="stat modified"><div class="n">{{ summary.by_change_type.modified or 0 }}</div><div class="l">modified</div></div>
+    <div class="stat removed"><div class="n">{{ summary.by_change_type.removed or 0 }}</div><div class="l">removed</div></div>
+    <div class="stat added"><div class="n">{{ summary.by_change_type.added or 0 }}</div><div class="l">added</div></div>
+  </div>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-head"><span>delta report</span><span>markdown, generated offline &mdash; no LLM</span></div>
+      <div id="report">{{ report_md }}</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><span>grounded chat</span><span>retrieval + citations</span></div>
+      <div id="chat">
+        <div class="msg bot">Ask me anything about either P&amp;ID revision or what changed between them &mdash; every claim is grounded and cited against the retrieved passages.</div>
+      </div>
+      <div class="chips">
+        <span class="chip" data-q="What changed about the compressor duty or flow rate?">compressor duty change?</span>
+        <span class="chip" data-q="List a few tags that were removed on page 1.">removed tags?</span>
+        <span class="chip" data-q="What does note 14 say about the vent?">vent note?</span>
+        <span class="chip" data-q="Summarize the biggest categories of change between the two revisions.">summarize changes</span>
+      </div>
+      <form id="askform">
+        <input id="q" autocomplete="off" placeholder="Ask a question about PID A, PID B, or the delta…" />
+        <button id="send" type="submit">Ask</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer>
+  Precomputed delta session (<code>pair_001</code>) served statically; chat retrieval (TF-IDF) and answer
+  generation run live on each request. Source: <a href="https://github.com" target="_blank" rel="noopener">delta-chat</a>.
+</footer>
+
+<script>
+const chatEl = document.getElementById('chat');
+const form = document.getElementById('askform');
+const input = document.getElementById('q');
+const sendBtn = document.getElementById('send');
+
+function addMsg(role, text, cls) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + role + (cls ? ' ' + cls : '');
+  div.textContent = text;
+  chatEl.appendChild(div);
+  chatEl.scrollTop = chatEl.scrollHeight;
+  return div;
+}
+
+async function ask(question) {
+  if (!question) return;
+  addMsg('user', question);
+  input.value = '';
+  sendBtn.disabled = true;
+  const thinking = addMsg('bot', 'Thinking…');
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question }),
+    });
+    const data = await res.json();
+    thinking.remove();
+
+    if (!res.ok) {
+      addMsg('bot', data.error || 'Request failed.', 'err');
+      return;
+    }
+
+    const bot = addMsg('bot', data.answer);
+    if (data.citations_valid.length || data.citations_invalid.length) {
+      const cites = document.createElement('div');
+      cites.className = 'cites';
+      let html = '';
+      if (data.citations_valid.length) html += 'cited: ' + data.citations_valid.join(', ');
+      if (data.citations_invalid.length) html += (html ? ' &nbsp;|&nbsp; ' : '') +
+        '<span class="bad">unverifiable: ' + data.citations_invalid.join(', ') + '</span>';
+      cites.innerHTML = html;
+      bot.appendChild(cites);
+    }
+  } catch (e) {
+    thinking.remove();
+    addMsg('bot', 'Network error: ' + e.message, 'err');
+  } finally {
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  ask(input.value.trim());
+});
+
+document.querySelectorAll('.chip').forEach((chip) => {
+  chip.addEventListener('click', () => ask(chip.dataset.q));
+});
+</script>
+</body>
+</html>

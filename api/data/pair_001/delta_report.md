@@ -1,0 +1,460 @@
+# Delta Report: `pair_001:lift_gas:A` -> `pair_001:export_gas:B`
+
+**Total changes detected:** 432
+
+| Change type | Count |
+|---|---|
+| modified | 298 |
+| added | 11 |
+| removed | 123 |
+
+| Item type | Count |
+|---|---|
+| tag | 72 |
+| spec_value | 8 |
+| setpoint | 16 |
+| note | 15 |
+| text | 321 |
+
+## Page 1
+
+### Modified (298)
+
+- **`D0001`** (text, conf 0.99, loc [49,688]): Text changed from "LUBE OIL RESERVOIR VENT. OIL MIST SEPRATOR INSTALLED OFF-SKID." to "LUBE OIL RESERVOIR VENT. OIL MIST SEPERATOR INSTALLED OFF-SKID.".
+- **`D0002`** (text, conf 0.98, loc [50,682]): Text changed from "26-PDI-9054 HH INITIATE PRESSURIZED COMPRESSOR STOP." to "26-PDI-9015 HH INITIATE PRESSURIZED COMPRESSOR STOP.".
+- **`D0003`** (note, conf 0.98, loc [50,750]): Note changed from "11. COMPRESSOR MOTOR EQUIPPED WITH VARIABLE SPEED DRIVE (VSD). FOR VSD" to "COMPRESSOR MOTOR EQUIPPED WITH VARIABLE SPEED DRIVE (VSD). FOR VSD".
+- **`D0004`** (note, conf 0.98, loc [277,712]): Note changed from "20.     INSULATION THICKNESS TO BE TAKEN INTO CONSIDERATION ON TW SELECTION." to "INSULATION THICKNESS TO BE TAKEN INTO CONSIDERATION ON TW SELECTION.".
+- **`D0005`** (note, conf 0.97, loc [277,718]): Note changed from "21.     DIFFERENTIAL PRESSURE BASED ORIFICE TYPE VOLUME FLOW METER." to "DIFFERENTIAL PRESSURE BASED ORIFICE TYPE VOLUME FLOW METER.".
+- **`D0006`** (text, conf 0.97, loc [731,523]): Text changed from "1/2"-PL-43-9994-GS20S-00" to "1/2"-PL-43-9993-GS20S-00".
+- **`D0007`** (text, conf 0.97, loc [88,385]): Text changed from "2"-WC-40-9036-AC21-00" to "2"-WC-40-9035-AC21-00".
+- **`D0008`** (text, conf 0.97, loc [525,211]): Text changed from "2"-VA-26-9119-AS20S-00" to "2"-VA-26-9111-AS20S-00".
+- **`D0009`** (note, conf 0.97, loc [277,756]): Note changed from "26.     BOTTOM ENTRY FOR SUCTION AND DISCHARGE NOZZLES." to "BOTTOM ENTRY FOR SUCTION AND DISCHARGE NOZZLES.".
+- **`D0010`** (text, conf 0.97, loc [1037,658]): Text changed from "3"-DO-56-9053-AC21-00" to "3"-DO-56-9051-AC21-00".
+- **`D0011`** (text, conf 0.97, loc [90,337]): Text changed from "1"-AI-63-9007-AS20-00" to "1"-AI-63-9000-AS20-00".
+- **`D0012`** (text, conf 0.97, loc [445,219]): Text changed from "3"-VA-26-9121-AC21-00" to "3"-VA-26-9112-AC21-00".
+- **`D0013`** (text, conf 0.97, loc [1038,599]): Text changed from "3"-DO-56-9009-AC21-00" to "3"-DO-56-9000-AC21-00".
+- **`D0014`** (text, conf 0.97, loc [26,17]): Text changed from "FROM 26-PIT-9077 IN 3RD" to "FROM 26-PIT-9087 IN 3RD".
+- **`D0015`** (text, conf 0.97, loc [519,219]): Text changed from "2"-VA-26-9120-AS20S-00" to "2"-VA-26-9110-AS20S-00".
+- **`D0016`** (text, conf 0.97, loc [992,27]): Text changed from "10"-VF-43-9027-AS20S-00" to "10"-VF-43-9007-AS20S-00".
+- **`D0017`** (spec_value, conf 0.97, loc [263,274]): Spec_value changed from "12mm-PV-26-9118-FD70X-00" to "12mm-PV-26-9116-FD70X-00".
+- **`D0018`** (text, conf 0.97, loc [156,510]): Text changed from "2"-WC-40-9013-AC21-00" to "2"-WC-40-9001-AC21-00".
+- **`D0019`** (text, conf 0.97, loc [164,654]): Text changed from "TT-26-9712-AS20-00" to "TT-26-9711-AS20-00".
+- **`D0020`** (text, conf 0.96, loc [90,452]): Text changed from "1"-GI-64-9002-AS20-00" to "1"-GI-64-9000-AS20-00".
+- **`D0021`** (note, conf 0.96, loc [263,806]): Note changed from "LL SET POINT IS OVERRIDEN AT START-UP." to "32.    LL SET POINT IS OVERRIDEN AT START-UP.".
+- **`D0022`** (note, conf 0.96, loc [277,738]): Note changed from "23.     FROM SEAL GAS SYSTEM RUPTURE DISCS." to "FROM SEAL GAS SYSTEM RUPTURE DISCS.".
+- **`D0023`** (text, conf 0.96, loc [90,363]): Text changed from "1"-AI-63-9006-AS20-00" to "1"-AI-63-9001-AS20-00".
+- **`D0024`** (spec_value, conf 0.96, loc [277,744]): Spec_value changed from "24.     MAX BACK-PRESSURE 0.005 BARG." to "MAX BACK-PRESSURE 0.005 BARG.".
+- **`D0025`** (spec_value, conf 0.96, loc [277,750]): Spec_value changed from "25.     MAX BACK-PRESSURE 1.5 BARG." to "MAX BACK-PRESSURE 1.5 BARG.".
+- **`D0026`** (note, conf 0.96, loc [50,775]): Note changed from "14. VENT ROUTED TO SAFE LOCATION." to "VENT ROUTED TO SAFE LOCATION.".
+- **`D0027`** (text, conf 0.96, loc [88,414]): Text changed from "2"-WC-40-9037-AC21-00" to "2"-WC-40-9034-AC21-00".
+- **`D0028`** (text, conf 0.95, loc [32,146]): Text changed from "26-000006-001" to "26-000001-001".
+- **`D0029`** (text, conf 0.95, loc [1123,500]): Text changed from "26-000004-001" to "26-000001-001".
+- **`D0030`** (text, conf 0.95, loc [1123,224]): Text changed from "26-000006-001" to "26-000003-001".
+- **`D0031`** (text, conf 0.95, loc [32,204]): Text changed from "26-000004-001" to "26-000001-001".
+- **`D0032`** (text, conf 0.95, loc [32,117]): Text changed from "26-000006-001" to "26-000001-001".
+- **`D0033`** (text, conf 0.95, loc [32,37]): Text changed from "26-000006-001" to "26-000001-001".
+- **`D0034`** (text, conf 0.95, loc [1037,179]): Text changed from "GC11S  AS20S" to "FC11S  AS20S".
+- **`D0035`** (text, conf 0.95, loc [456,220]): Text changed from "3/4"-VA-26-9123-AC21-00" to "3/4"-VA-26-9114-AC21-00".
+- **`D0036`** (text, conf 0.95, loc [1078,110]): Text changed from "2"-VF-43-9026-AS20S-00" to "2"-VF-43-9008-AS20S-00".
+- **`D0037`** (text, conf 0.95, loc [336,77]): Text changed from "ASC/PIC3-GL" to "ASC/PIC3-GE".
+- **`D0038`** (text, conf 0.95, loc [992,47]): Text changed from "10"-VF-43-9025-AS20S-00" to "10"-VF-43-9009-AS20S-00".
+- **`D0039`** (text, conf 0.95, loc [49,731]): Text changed from "MANUAL DRAIN PRIOR TO EACH START-UP. PUSH BUTTON WITH PERMISSIVE FOR" to "MANUAL DRAIN PRIOR TO START-UP. PUSH BUTTON WITH PERMISSIVE TO START".
+- **`D0040`** (text, conf 0.94, loc [1041,523]): Text changed from "2"-VF-43-9032-GS20S-00" to "2"-VF-43-9015-GS20S-00".
+- **`D0041`** (text, conf 0.94, loc [1040,496]): Text changed from "2"-PL-26-9117-GC11S-00" to "2"-PL-26-9115-FC11S-00".
+- **`D0042`** (text, conf 0.94, loc [1117,654]): Text changed from "HAZ. OPEN DRAIN" to "TO HAZ. OPEN DRAIN".
+- **`D0043`** (text, conf 0.94, loc [1117,613]): Text changed from "HAZ. OPEN DRAIN" to "TO HAZ. OPEN DRAIN".
+- **`D0044`** (text, conf 0.94, loc [1117,595]): Text changed from "HAZ. OPEN DRAIN" to "TO HAZ. OPEN DRAIN".
+- **`D0045`** (text, conf 0.94, loc [1117,634]): Text changed from "HAZ. OPEN DRAIN" to "TO HAZ. OPEN DRAIN".
+- **`D0046`** (note, conf 0.94, loc [278,681]): Note changed from "19.     SUCTION STRAINER (COMMISSIONING PHASE ONLY) WITH STRAIGHT PIPE RUNS MIN. 5xD" to "SUCTION STRAINER (COMMISSIONING PHASE ONLY) WITH STRAIGHT PIPE RUNS".
+- **`D0047`** (text, conf 0.94, loc [1038,617]): Text changed from "3"-DO-56-9011-AC21-00" to "3"-DO-56-9002-AC21-00".
+- **`D0048`** (text, conf 0.94, loc [1038,639]): Text changed from "3"-DO-56-9013-AC21-00" to "3"-DO-56-9004-AC21-00".
+- **`D0049`** (text, conf 0.94, loc [682,271]): Text changed from "#150 DSS  AC21S" to "150# DSS  AC21S".
+- **`D0050`** (text, conf 0.94, loc [88,537]): Text changed from "3"-WC-40-9012-AC21-00" to "3"-WC-40-9000-AC21-00".
+- **`D0051`** (tag, conf 0.94, loc [451,165]): Tag changed from "26-CX-9011" to "26-CX-9021".
+- **`D0052`** (text, conf 0.94, loc [354,427]): Text changed from "26-KA-901-M01" to "26-KA-902-M01".
+- **`D0053`** (text, conf 0.94, loc [451,182]): Text changed from "3"-VA-26-9122-AC21-00" to "3"-VA-26-9113-AC21-00".
+- **`D0054`** (text, conf 0.94, loc [1050,293]): Text changed from "6"-VF-43-9029-AC21S-00" to "6"-VF-43-9011-AC21S-00".
+- **`D0055`** (tag, conf 0.94, loc [464,233]): Tag changed from "26-CX-9122" to "26-CX-9222".
+- **`D0056`** (text, conf 0.94, loc [80,200]): Text changed from "8"-PV-26-9035-FC11S-08" to "8"-PV-26-9007-FC11S-08".
+- **`D0057`** (text, conf 0.94, loc [88,487]): Text changed from "3"-WC-40-9015-AC21-00" to "3"-WC-40-9003-AC21-00".
+- **`D0058`** (text, conf 0.94, loc [697,477]): Text changed from "2500#  GC11S" to "2500#  FC11S".
+- **`D0059`** (text, conf 0.94, loc [156,467]): Text changed from "2"-WC-40-9014-AC21-00" to "2"-WC-40-9002-AC21-00".
+- **`D0060`** (text, conf 0.94, loc [1015,192]): Text changed from "2"GBGC11J" to "2"GBFC11J".
+- **`D0061`** (text, conf 0.94, loc [1035,209]): Text changed from "2"BLGC61J" to "2"BLFC61J".
+- **`D0062`** (text, conf 0.94, loc [26,185]): Text changed from "FROM 3RD STAGE" to "FROM 3RD STAGE HP".
+- **`D0063`** (text, conf 0.94, loc [861,178]): Text changed from "4"BLGC61J" to "4"BLFC61J".
+- **`D0064`** (text, conf 0.94, loc [862,134]): Text changed from "4"BLGC61J" to "4"BLFC61J".
+- **`D0065`** (tag, conf 0.93, loc [163,551]): Tag changed from "26-KA-901" to "26-KA-902".
+- **`D0066`** (text, conf 0.93, loc [1117,468]): Text changed from "TO 3RD STAGE HP GAS" to "TO 3RD STAGE HP".
+- **`D0067`** (text, conf 0.93, loc [496,687]): Text changed from "THIS P&ID CONTAINS DCN-KP-0839-2/0970-1/1261-1." to "THIS P&ID CONTAINS DCN-KP-0839-1/0892-2/1260-1.".
+- **`D0068`** (text, conf 0.93, loc [1117,564]): Text changed from "CLOSED DRAIN" to "TO CLOSED DRAIN".
+- **`D0069`** (tag, conf 0.93, loc [134,141]): Tag changed from "26-PY-9077A" to "26-PY-9087A".
+- **`D0070`** (text, conf 0.93, loc [564,349]): Text changed from "SEAL GAS SYSTEM (HC PRIMARY & N2 GAS" to "SEAL GAS SYSTEM (HC GAS PRIMARY & N2".
+- **`D0071`** (tag, conf 0.93, loc [564,334]): Tag changed from "26-KZ-901" to "26-KZ-902".
+- **`D0072`** (text, conf 0.93, loc [49,762]): Text changed from "(0D204-CIT-P-XB-ER252A-000001-002). VSD AND MCC NOT IN COMPRESSOR VENDOR" to "(0D204-CIT-P-XB-ER252A-000002-002). VSD NOT IN COMPRESSOR VENDOR SCOPE.".
+- **`D0073`** (text, conf 0.93, loc [1117,204]): Text changed from "TO 3RD STAGE HP" to "TO 3RD STAGE HP GAS".
+- **`D0074`** (tag, conf 0.93, loc [962,76]): Tag changed from "43BL9020" to "43BL9009".
+- **`D0075`** (tag, conf 0.93, loc [278,348]): Tag changed from "63BL9023" to "63BL9020".
+- **`D0076`** (tag, conf 0.93, loc [457,464]): Tag changed from "26CB9711" to "26CB9811".
+- **`D0077`** (tag, conf 0.93, loc [472,191]): Tag changed from "26-CK-911" to "26-CK-921".
+- **`D0078`** (tag, conf 0.93, loc [272,477]): Tag changed from "40GT9309" to "40GT9303".
+- **`D0079`** (tag, conf 0.93, loc [977,113]): Tag changed from "43GT9075" to "43GT9052".
+- **`D0080`** (tag, conf 0.93, loc [863,130]): Tag changed from "26BL9073" to "26BL9032".
+- **`D0081`** (tag, conf 0.93, loc [217,521]): Tag changed from "40BL9020" to "40BL9004".
+- **`D0082`** (tag, conf 0.93, loc [856,532]): Tag changed from "43GT9985" to "43GT9984".
+- **`D0083`** (text, conf 0.93, loc [163,560]): Text changed from "3RD STAGE HP GAS LIFT COMPRESSOR" to "3RD STAGE HP GAS EXPORT COMPRESSOR".
+- **`D0084`** (text, conf 0.93, loc [1019,168]): Text changed from "4"BLGC61J" to "4"BLFC61J".
+- **`D0085`** (text, conf 0.93, loc [1020,133]): Text changed from "4"BLGC61J" to "4"BLFC61J".
+- **`D0086`** (text, conf 0.93, loc [292,265]): Text changed from "NOTE 30" to "NOTE 3".
+- **`D0087`** (tag, conf 0.93, loc [260,527]): Tag changed from "40GT9307" to "40GT9300".
+- **`D0088`** (tag, conf 0.93, loc [569,523]): Tag changed from "26BL9754" to "26BL9854".
+- **`D0089`** (tag, conf 0.93, loc [222,500]): Tag changed from "40GT9308" to "40GT9301".
+- **`D0090`** (tag, conf 0.93, loc [369,238]): Tag changed from "26CB9274" to "26CB9124".
+- **`D0091`** (text, conf 0.93, loc [731,496]): Text changed from "1/2"-PL-26-9170-GC11S-00" to "1/2"-PL-26-9169-FC11S-00".
+- **`D0092`** (tag, conf 0.93, loc [178,378]): Tag changed from "40GT9080" to "40GT9078".
+- **`D0093`** (tag, conf 0.93, loc [446,405]): Tag changed from "26-KA-901" to "26-KA-902".
+- **`D0094`** (tag, conf 0.92, loc [512,464]): Tag changed from "26CB9712" to "26CB9812".
+- **`D0095`** (tag, conf 0.92, loc [863,149]): Tag changed from "26GT9173" to "26GT9132".
+- **`D0096`** (text, conf 0.92, loc [964,212]): Text changed from "2"-PV-26-9068-GC11S-38" to "2"-PV-26-9070-FC11S-38".
+- **`D0097`** (tag, conf 0.92, loc [178,445]): Tag changed from "64CH9003" to "64CH9001".
+- **`D0098`** (tag, conf 0.92, loc [220,445]): Tag changed from "64GT9004" to "64GT9002".
+- **`D0099`** (text, conf 0.92, loc [906,194]): Text changed from "4"-PV-26-9048-GC11S-38" to "4"-PV-26-9021-FC11S-38".
+- **`D0100`** (text, conf 0.92, loc [906,204]): Text changed from "4"-PV-26-9047-GC11S-38" to "4"-PV-26-9020-FC11S-38".
+- **`D0101`** (text, conf 0.92, loc [392,178]): Text changed from "NOTE 35" to "NOTE 34".
+- **`D0102`** (tag, conf 0.92, loc [1040,114]): Tag changed from "26GT9175" to "26GT9135".
+- **`D0103`** (text, conf 0.92, loc [416,415]): Text changed from "3RD STAGE HP GAS LIFT COMPRESSOR" to "3RD STAGE HP GAS EXPORT COMPRESSOR".
+- **`D0104`** (tag, conf 0.92, loc [866,487]): Tag changed from "26CB9273" to "26CB9271".
+- **`D0105`** (text, conf 0.92, loc [164,249]): Text changed from "NOTE 30" to "NOTE 31".
+- **`D0106`** (tag, conf 0.92, loc [278,372]): Tag changed from "63BL9021" to "63BL9022".
+- **`D0107`** (setpoint, conf 0.92, loc [210,264]): Setpoint changed from "H    : 0.3" to "H : 0.7".
+- **`D0108`** (tag, conf 0.92, loc [272,498]): Tag changed from "40GT9310" to "40GT9302".
+- **`D0109`** (setpoint, conf 0.92, loc [1034,69]): Setpoint changed from "SP = 257 bar (g)" to "SP= 225.4 bar (g)".
+- **`D0110`** (setpoint, conf 0.92, loc [758,136]): Setpoint changed from "HH : 160" to "HH : 150".
+- **`D0111`** (tag, conf 0.91, loc [1020,128]): Tag changed from "26BL9074" to "26BL9034".
+- **`D0112`** (text, conf 0.91, loc [609,213]): Text changed from "NOTE 35" to "NOTE 34".
+- **`D0113`** (text, conf 0.91, loc [387,560]): Text changed from "CONDITIONER" to "OIL CONDITIONER".
+- **`D0114`** (tag, conf 0.91, loc [179,407]): Tag changed from "40GT9079" to "40GT9077".
+- **`D0115`** (text, conf 0.91, loc [340,560]): Text changed from "CONDITIONER" to "OIL CONDITIONER".
+- **`D0116`** (setpoint, conf 0.91, loc [844,48]): Setpoint changed from "SP = 257 bar (g)" to "SP= 225.4 bar (g)".
+- **`D0117`** (text, conf 0.91, loc [332,296]): Text changed from "NOTE 27" to "NOTE 28".
+- **`D0118`** (text, conf 0.91, loc [26,104]): Text changed from "TO 3RD STAGE HP GAS LIFT" to "TO 3RD STAGE HP GAS EXPORT".
+- **`D0119`** (text, conf 0.91, loc [277,787]): Text changed from "POWER AT COMPRESSOR COUPLING FOR CASE 7B." to "POWER AT COMPRESSOR COUPLING FOR MAX CAMBO CASE.".
+- **`D0120`** (text, conf 0.91, loc [968,93]): Text changed from "FB/ILO" to "FB ILO".
+- **`D0121`** (text, conf 0.91, loc [897,175]): Text changed from "FB/ILO" to "FB ILO".
+- **`D0122`** (tag, conf 0.91, loc [242,216]): Tag changed from "26CB9162" to "26CB9120".
+- **`D0123`** (text, conf 0.90, loc [994,166]): Text changed from "FB/ILC" to "FB ILC".
+- **`D0124`** (text, conf 0.90, loc [993,131]): Text changed from "FB/ILC" to "FB ILC".
+- **`D0125`** (text, conf 0.90, loc [365,243]): Text changed from "1/2"CBFC21JX" to "3/4"CBFC21JX".
+- **`D0126`** (note, conf 0.90, loc [50,794]): Note changed from "17.     SECONDARY SEAL GAS AND SEPARATION GAS." to "SECONDARY SEAL GAS AND SEPARATION GAS.".
+- **`D0127`** (text, conf 0.90, loc [1038,566]): Text changed from "1"-DC-57-9015-GC11S-00" to "3/4"-DC-57-9005-FC11S-00".
+- **`D0128`** (text, conf 0.90, loc [163,617]): Text changed from "-46 / 160  / -46 / 160" to "-46 / 160   /   -46 / 160                             NOTE 22".
+- **`D0129`** (text, conf 0.90, loc [1053,222]): Text changed from "6"-PV-26-9044-GC11S-38" to "6"-PV-26-9017-FC11S-38".
+- **`D0130`** (text, conf 0.90, loc [677,161]): Text changed from "NOTE 30" to "NOTE 32".
+- **`D0131`** (text, conf 0.90, loc [340,554]): Text changed from "PROVISION" to "PROVISION FOR".
+- **`D0132`** (text, conf 0.90, loc [386,554]): Text changed from "PROVISION" to "PROVISION FOR".
+- **`D0133`** (tag, conf 0.90, loc [778,192]): Tag changed from "26CB9171" to "26CB9131".
+- **`D0134`** (text, conf 0.90, loc [163,589]): Text changed from "229 / 108.5" to "199   /   108.5".
+- **`D0135`** (text, conf 0.89, loc [163,645]): Text changed from "VARIABLE SPEED MOTOR DRIVEN" to "VARIABLE SPEED MOTOR  DRIVEN CENTRIFUGAL".
+- **`D0136`** (tag, conf 0.89, loc [1035,204]): Tag changed from "26BL9363" to "26BL9036".
+- **`D0137`** (text, conf 0.89, loc [1029,91]): Text changed from "2500#" to "1500#".
+- **`D0138`** (text, conf 0.89, loc [163,570]): Text changed from "19057          NOTE 29" to "1835      NOTE 29".
+- **`D0139`** (text, conf 0.89, loc [446,176]): Text changed from "N4201" to "N3201".
+- **`D0140`** (text, conf 0.89, loc [532,267]): Text changed from "4"x6"" to "3"x6"".
+- **`D0141`** (text, conf 0.89, loc [458,209]): Text changed from "N4215" to "N3215".
+- **`D0142`** (text, conf 0.89, loc [630,540]): Text changed from "N4604" to "N3604".
+- **`D0143`** (text, conf 0.89, loc [309,416]): Text changed from "N4603" to "N3460".
+- **`D0144`** (text, conf 0.89, loc [544,289]): Text changed from "N4602" to "N3602".
+- **`D0145`** (text, conf 0.89, loc [436,289]): Text changed from "N4228" to "N3228".
+- **`D0146`** (text, conf 0.89, loc [459,289]): Text changed from "N4232" to "N3232".
+- **`D0147`** (text, conf 0.89, loc [458,203]): Text changed from "N4229" to "N3229".
+- **`D0148`** (text, conf 0.89, loc [380,289]): Text changed from "N4601" to "N3601".
+- **`D0149`** (text, conf 0.89, loc [332,290]): Text changed from "N4469" to "N3469".
+- **`D0150`** (text, conf 0.89, loc [615,564]): Text changed from "GC11S" to "FC11S".
+- **`D0151`** (text, conf 0.89, loc [412,289]): Text changed from "N4205" to "N3205".
+- **`D0152`** (text, conf 0.89, loc [578,540]): Text changed from "N4209" to "N3209".
+- **`D0153`** (text, conf 0.89, loc [482,289]): Text changed from "N4466" to "N3466".
+- **`D0154`** (text, conf 0.89, loc [455,192]): Text changed from "N4214" to "N3214".
+- **`D0155`** (text, conf 0.89, loc [504,289]): Text changed from "N4606" to "N3606".
+- **`D0156`** (text, conf 0.89, loc [419,539]): Text changed from "N4208" to "N3208".
+- **`D0157`** (text, conf 0.89, loc [443,539]): Text changed from "N4223" to "N3223".
+- **`D0158`** (text, conf 0.89, loc [350,538]): Text changed from "N4230" to "N3230".
+- **`D0159`** (text, conf 0.89, loc [308,535]): Text changed from "N4212" to "N3212".
+- **`D0160`** (text, conf 0.89, loc [395,539]): Text changed from "N4227" to "N3227".
+- **`D0161`** (text, conf 0.89, loc [510,540]): Text changed from "N4203" to "N3203".
+- **`D0162`** (note, conf 0.89, loc [49,768]): Note changed from "13. UPSTREAM STRAIGHT RUN MIN. 10xD. DOWNSTREAM STRAIGHT RUN MIN. 5xD." to "UPSTREAM STRAIGHT PIPE RUN MIN. 10xD, DOWNSTREAM MIN 5xD.".
+- **`D0163`** (text, conf 0.89, loc [469,539]): Text changed from "N4222" to "N3222".
+- **`D0164`** (text, conf 0.89, loc [558,259]): Text changed from "GC11S" to "FC11S".
+- **`D0165`** (text, conf 0.89, loc [577,290]): Text changed from "O4207" to "O3207".
+- **`D0166`** (text, conf 0.89, loc [316,543]): Text changed from "N4207" to "N3207".
+- **`D0167`** (tag, conf 0.89, loc [372,171]): Tag changed from "26CB9163" to "26CB9123".
+- **`D0168`** (text, conf 0.88, loc [308,518]): Text changed from "N4224" to "N3224".
+- **`D0169`** (text, conf 0.88, loc [863,91]): Text changed from "2500#" to "1500#".
+- **`D0170`** (text, conf 0.88, loc [308,341]): Text changed from "N4202" to "N3202".
+- **`D0171`** (text, conf 0.88, loc [308,488]): Text changed from "N4213" to "N3213".
+- **`D0172`** (text, conf 0.88, loc [26,110]): Text changed from "COMPRESSOR ANTI-SURGE" to "COMPRESSOR ANTI-SURGE 26-FV-9038".
+- **`D0173`** (setpoint, conf 0.88, loc [676,153]): Setpoint changed from "LL: 120" to "LL : 110".
+- **`D0174`** (setpoint, conf 0.88, loc [676,136]): Setpoint changed from "HH: 245" to "HH : 214".
+- **`D0175`** (text, conf 0.88, loc [308,366]): Text changed from "N4608" to "N3608".
+- **`D0176`** (spec_value, conf 0.88, loc [277,792]): Spec_value changed from "CASE 8A. CORRESPONDING VOL.FLOW 10 MMSCFD / 0.28 MSm3 /d." to "MAX CAMBO -CASE. CORRESPONDING VOL. FLOW 66 MMSCFD / 1.87 MSm3/d.".
+- **`D0177`** (text, conf 0.88, loc [309,387]): Text changed from "N4461" to "N3461".
+- **`D0178`** (text, conf 0.88, loc [308,471]): Text changed from "N4225" to "N3225".
+- **`D0179`** (text, conf 0.88, loc [676,526]): Text changed from "N4465" to "N3465".
+- **`D0180`** (text, conf 0.88, loc [676,500]): Text changed from "N4468" to "N3468".
+- **`D0181`** (text, conf 0.88, loc [676,298]): Text changed from "N4467" to "N3467".
+- **`D0182`** (tag, conf 0.87, loc [732,583]): Tag changed from "26GT9280" to "26GT9128".
+- **`D0183`** (tag, conf 0.87, loc [1038,149]): Tag changed from "26GT9347" to "26GT9134".
+- **`D0184`** (text, conf 0.87, loc [26,23]): Text changed from "STAGE HP GAS LIFT" to "STAGE HP GAS EXPORT".
+- **`D0185`** (text, conf 0.87, loc [654,566]): Text changed from "1"-DC-26-9053-GC11S-00" to "3/4"-DC-26-9026-FC11S-00".
+- **`D0186`** (tag, conf 0.87, loc [920,76]): Tag changed from "43BL9070" to "43BL9008".
+- **`D0187`** (tag, conf 0.86, loc [1016,187]): Tag changed from "26GB9076" to "26GB9035".
+- **`D0188`** (text, conf 0.86, loc [942,160]): Text changed from "9010" to "9003".
+- **`D0189`** (tag, conf 0.86, loc [224,400]): Tag changed from "40GT9311" to "40GT9306".
+- **`D0190`** (tag, conf 0.86, loc [220,476]): Tag changed from "40GB9022" to "40GB9006".
+- **`D0191`** (tag, conf 0.86, loc [906,112]): Tag changed from "43GT9074" to "43GT9051".
+- **`D0192`** (text, conf 0.86, loc [742,186]): Text changed from "9065" to "9025".
+- **`D0193`** (tag, conf 0.86, loc [862,173]): Tag changed from "26BL9072" to "26BL9031".
+- **`D0194`** (text, conf 0.86, loc [741,149]): Text changed from "9065" to "9025".
+- **`D0195`** (tag, conf 0.86, loc [844,112]): Tag changed from "26GT9174" to "26GT9133".
+- **`D0196`** (tag, conf 0.86, loc [288,171]): Tag changed from "26CB9164" to "26CB9121".
+- **`D0197`** (text, conf 0.86, loc [194,244]): Text changed from "9054" to "9015".
+- **`D0198`** (setpoint, conf 0.86, loc [210,259]): Setpoint changed from "HH : 0.6" to "HH : 1.2".
+- **`D0199`** (text, conf 0.86, loc [193,272]): Text changed from "9054" to "9015".
+- **`D0200`** (tag, conf 0.86, loc [326,171]): Tag changed from "26CB9165" to "26CB9122".
+- **`D0201`** (tag, conf 0.86, loc [788,576]): Tag changed from "26GB9178" to "26GB9129".
+- **`D0202`** (text, conf 0.86, loc [658,149]): Text changed from "9062" to "9023".
+- **`D0203`** (text, conf 0.85, loc [658,180]): Text changed from "9062" to "9023".
+- **`D0204`** (tag, conf 0.85, loc [216,374]): Tag changed from "40GT9313" to "40GT9305".
+- **`D0205`** (tag, conf 0.85, loc [217,531]): Tag changed from "40BL9021" to "40BL9003".
+- **`D0206`** (text, conf 0.85, loc [786,169]): Text changed from "9063" to "9026".
+- **`D0207`** (text, conf 0.85, loc [483,712]): Text changed from "1-23. DELETED." to "1-19.      DELETED.".
+- **`D0208`** (tag, conf 0.85, loc [1020,164]): Tag changed from "26BL9077" to "26BL9033".
+- **`D0209`** (text, conf 0.85, loc [296,116]): Text changed from "9056" to "9016".
+- **`D0210`** (text, conf 0.85, loc [296,151]): Text changed from "9056" to "9016".
+- **`D0211`** (text, conf 0.85, loc [206,178]): Text changed from "9009" to "9002".
+- **`D0212`** (tag, conf 0.85, loc [181,481]): Tag changed from "40GB9023" to "40GB9005".
+- **`D0213`** (tag, conf 0.84, loc [346,271]): Tag changed from "26CB9167" to "26CB9272".
+- **`D0214`** (text, conf 0.84, loc [26,76]): Text changed from "FROM 26-PIT-9077 IN 3RD" to "FROM 27-PIT-0001B IN 3RD STAGE".
+- **`D0215`** (text, conf 0.84, loc [277,687]): Text changed from "UPSTREAM AND 2xD DOWNSTREAM TO AVOID DAMAGE DUE TO TURBULENCE. HIGH ALARM AT 40" to "MIN. 5xD UPSTREAM AND 2xD DOWNSTREAM TO AVOID DAMAGE DUE TO".
+- **`D0216`** (text, conf 0.84, loc [785,114]): Text changed from "9063" to "9026".
+- **`D0217`** (text, conf 0.84, loc [346,230]): Text changed from "9057" to "9017".
+- **`D0218`** (text, conf 0.84, loc [346,151]): Text changed from "9057" to "9017".
+- **`D0219`** (tag, conf 0.84, loc [224,427]): Tag changed from "40GT9312" to "40GT9304".
+- **`D0220`** (text, conf 0.84, loc [277,700]): Text changed from "% OF DESIGN DP AND COMPRESSOR HIGH-HIGH TRIP AT 50 % OF DESIGN DP RECOMMENDED BY" to "HIGH-HIGH TRIP AT 50 % OF DESIGN DP RECOMMENDED BY COMPRESSOR".
+- **`D0221`** (text, conf 0.83, loc [422,219]): Text changed from "9058" to "9018".
+- **`D0222`** (spec_value, conf 0.83, loc [277,724]): Spec_value changed from "22.     DESIGN PRESSURE IN EXTERNAL SYSTEM DOWNSTREAM COMPRESSOR 257 BARG." to "DESIGN PRESSURE / TEMPERATURE IN EXTERNAL SYSTEM DOWNSTREAM".
+- **`D0223`** (text, conf 0.83, loc [654,190]): Text changed from "3/4"CBGC01D" to "3/4"CBFC21IX".
+- **`D0224`** (text, conf 0.83, loc [783,187]): Text changed from "3/4"CBGC01D" to "3/4"CBFC21JX".
+- **`D0225`** (tag, conf 0.82, loc [649,195]): Tag changed from "26CB9172" to "26CB9130".
+- **`D0226`** (tag, conf 0.82, loc [141,31]): Tag changed from "26-PY-9077B SP 229" to "26-PY-9087B".
+- **`D0227`** (tag, conf 0.82, loc [836,489]): Tag changed from "26-HA-911" to "26-9115".
+- **`D0228`** (note, conf 0.82, loc [50,800]): Note changed from "18.     ANTI-SURGE CONTROL (ASC) AND PRESSURE CONTROL (PIC3-GL) BY UCP. COMPRESSOR DISCHARGE" to "ANTI-SURGE CONTROL (ASC) AND PRESSURE CONTROL (PIC3-GE) BY UCP.".
+- **`D0229`** (text, conf 0.82, loc [828,186]): Text changed from "9064" to "9024".
+- **`D0230`** (text, conf 0.82, loc [828,146]): Text changed from "9064" to "9024".
+- **`D0231`** (note, conf 0.82, loc [49,781]): Note changed from "16.     PRIMARY SEAL GAS IS TAKEN DOWNSTREAM LAST COMPRESSING STAGE (8TH STAGE). SKID INTERNAL" to "PRIMARY SEAL GAS IS TAKEN DOWNSTREAM LAST COMPRESSING STAGE (4TH".
+- **`D0232`** (text, conf 0.82, loc [422,190]): Text changed from "9058" to "9018".
+- **`D0233`** (text, conf 0.81, loc [1019,104]): Text changed from "4"x2"" to "4"x1.5"".
+- **`D0234`** (setpoint, conf 0.81, loc [306,218]): Setpoint changed from "HH :140" to "HH : 135".
+- **`D0235`** (text, conf 0.81, loc [1117,493]): Text changed from "SUCTION SCRUBBER" to "SCRUBBER".
+- **`D0236`** (text, conf 0.81, loc [895,103]): Text changed from "4"x2"" to "4"x1.5"".
+- **`D0237`** (text, conf 0.81, loc [846,42]): Text changed from "2G3" to "2H3".
+- **`D0238`** (text, conf 0.81, loc [484,208]): Text changed from "MAN)" to "(BY MAN)".
+- **`D0239`** (text, conf 0.81, loc [1037,64]): Text changed from "2G3" to "2H3".
+- **`D0240`** (text, conf 0.81, loc [163,598]): Text changed from "122 - 135 / 50" to "77 - 109   /   50".
+- **`D0241`** (text, conf 0.81, loc [263,756]): Text changed from "32." to "26.".
+- **`D0242`** (text, conf 0.80, loc [864,493]): Text changed from "2"GBFC11J" to "2"CBFC21JX".
+- **`D0243`** (text, conf 0.80, loc [50,737]): Text changed from "COMPRESSOR VENDOR." to "COMPRESSOR.".
+- **`D0244`** (text, conf 0.80, loc [805,489]): Text changed from "26-9170 26-9117" to "26-9169".
+- **`D0245`** (text, conf 0.80, loc [263,738]): Text changed from "33." to "23.".
+- **`D0246`** (tag, conf 0.80, loc [156,215]): Tag changed from "26CB9166" to "26CB9119".
+- **`D0247`** (text, conf 0.80, loc [785,581]): Text changed from "3/4"CBFC01D" to "3/4"GBFC01J".
+- **`D0248`** (text, conf 0.79, loc [805,515]): Text changed from "43-9994 43-9032" to "43-9993".
+- **`D0249`** (tag, conf 0.79, loc [837,304]): Tag changed from "43BL9019" to "43BL9054".
+- **`D0250`** (text, conf 0.78, loc [1116,210]): Text changed from "LIFT COMPRESSOR" to "EXPORT COMPRESSOR".
+- **`D0251`** (text, conf 0.78, loc [1016,67]): Text changed from "9066B" to "9027B".
+- **`D0252`** (text, conf 0.78, loc [841,117]): Text changed from "1"GTGC11J" to "3/4"GTFC01J".
+- **`D0253`** (text, conf 0.78, loc [26,29]): Text changed from "COMPRESSOR DISCHARGE" to "COMPRESSOR INLET HEADER".
+- **`D0254`** (text, conf 0.77, loc [869,69]): Text changed from "9066A" to "9027A".
+- **`D0255`** (text, conf 0.77, loc [729,588]): Text changed from "1"GTGC11J" to "3/4"GTFC01J".
+- **`D0256`** (text, conf 0.76, loc [163,579]): Text changed from "776             NOTE 28" to "62809    NOTE 30".
+- **`D0257`** (text, conf 0.76, loc [308,456]): Text changed from "N4460" to "N3603".
+- **`D0258`** (text, conf 0.75, loc [26,191]): Text changed from "SUCTION" to "GAS EXPORT SUCTION".
+- **`D0259`** (setpoint, conf 0.75, loc [312,108]): Setpoint changed from "H:130" to "H: 125".
+- **`D0260`** (text, conf 0.75, loc [812,560]): Text changed from "26-9053 57-9015" to "57-9005".
+- **`D0261`** (text, conf 0.75, loc [26,82]): Text changed from "COMPRESSOR" to "HP GAS EXPORT COMPRESSOR".
+- **`D0262`** (setpoint, conf 0.74, loc [802,105]): Setpoint changed from "H:2" to "H: 209".
+- **`D0263`** (text, conf 0.72, loc [26,88]): Text changed from "COMPRESSOR DISCHARGE" to "DISCHARGE HEADER".
+- **`D0264`** (text, conf 0.72, loc [346,116]): Text changed from "9056" to "9017".
+- **`D0265`** (text, conf 0.71, loc [35,812]): Text changed from "PRESSURE IS CONTROLLED WITH VSD." to "PRESSURE AS OVERRIDE CONTROL.".
+- **`D0266`** (tag, conf 0.71, loc [781,561]): Tag changed from "26CB9326" to "26-9026".
+- **`D0267`** (text, conf 0.71, loc [320,251]): Text changed from "9056" to "9019".
+- **`D0268`** (text, conf 0.71, loc [277,762]): Text changed from "DIFFERENTIAL PRESSURE BASED ORIFICE TYPE VOLUME FLOW METER. BALANCE LINE TEMPERATURE" to "FOR COMPRESSOR, GEAR AND MOTOR VIBRATION AND TEMPERATURE".
+- **`D0269`** (text, conf 0.70, loc [290,231]): Text changed from "9055" to "9019".
+- **`D0270`** (text, conf 0.68, loc [418,58]): Text changed from "9055" to "9017".
+- **`D0271`** (text, conf 0.68, loc [26,133]): Text changed from "STAGE HP GAS LIFT" to "FROM 26-PIT-9087 IN 3RD STAGE HP GAS".
+- **`D0272`** (text, conf 0.68, loc [1117,474]): Text changed from "HIGH POINT" to "GAS EXPORT".
+- **`D0273`** (text, conf 0.68, loc [836,515]): Text changed from "43-900002-001" to "43-9015".
+- **`D0274`** (text, conf 0.67, loc [26,54]): Text changed from "HP GAS LIFT" to "HP GAS EXPORT COMPRESSOR".
+- **`D0275`** (note, conf 0.67, loc [20,743]): Note changed from "10. DELETED." to "10.".
+- **`D0276`** (text, conf 0.66, loc [20,768]): Text changed from "36." to "13.".
+- **`D0277`** (text, conf 0.65, loc [1117,487]): Text changed from "ZSO" to "SUCTION".
+- **`D0278`** (text, conf 0.65, loc [50,787]): Text changed from "START-UP SEQUENCE." to "STAGE). SKID INTERNAL DESIGN.".
+- **`D0279`** (text, conf 0.61, loc [277,768]): Text changed from "26-TIT-9211,SUCTION PRESSURE 26-PIT-9055 AND PDIT OVER ORIFICE  (REF. VENDOR P&ID: 26-PDIT-9757)" to "MONITORING AND TRIP FUNCTION FUNCTION, REFER VENDOR DRAWING NOS.".
+- **`D0280`** (text, conf 0.60, loc [278,706]): Text changed from "DESIGN." to "VENDOR.".
+- **`D0281`** (note, conf 0.60, loc [20,719]): Note changed from "12. DELETED." to "6-7, 12.".
+- **`D0282`** (text, conf 0.59, loc [278,694]): Text changed from "ARE USED FOR BALANCE LINE COOLER PROCESS GAS FLOW CALCULATION." to "TURBULENCE. HIGH ALARM AT 40 % OF DESIGN DP AND COMPRESSOR".
+- **`D0283`** (note, conf 0.59, loc [20,800]): Note changed from "15. DELETED." to "18.".
+- **`D0284`** (text, conf 0.59, loc [32,95]): Text changed from "VALVE, 26-FV-9076" to "27-900001-001".
+- **`D0285`** (text, conf 0.59, loc [839,214]): Text changed from "NOTE 13,32" to "1 1/2"".
+- **`D0286`** (text, conf 0.59, loc [752,213]): Text changed from "2"x3"" to "1 1/2"".
+- **`D0287`** (text, conf 0.57, loc [278,774]): Text changed from "CHEMICAL CLEANING (CIP); BLEED/DRAIN CONNECTION." to "0D204-CIT-P-XB-ER252A-000002-002 AND 0D204-CIT-P-XB-ER252A-000002-003.".
+- **`D0288`** (text, conf 0.57, loc [20,775]): Text changed from "SCOPE." to "14.".
+- **`D0289`** (text, conf 0.51, loc [50,806]): Text changed from "CENTRIFUGAL" to "COMPRESSOR SUCTION PRESSURE IS CONTROLLED BY USING VSD; DISCHARGE".
+- **`D0290`** (spec_value, conf 0.50, loc [277,731]): Spec_value changed from "THIS P&ID CONTAINS DCN-KP-0273-8/0389-1/332-1/0530-1/0618-1." to "COMPRESSOR 225 BAR G / 150°C.".
+- **`D0291`** (text, conf 0.49, loc [309,227]): Text changed from "POINT" to "NOTE 32".
+- **`D0292`** (text, conf 0.46, loc [179,62]): Text changed from "HIGH POINT" to "27-PY-0001BA      MEASUREMENT".
+- **`D0293`** (text, conf 0.46, loc [263,681]): Text changed from "10D" to "19.".
+- **`D0294`** (text, conf 0.43, loc [263,718]): Text changed from "1"x3/4"" to "21.".
+- **`D0295`** (text, conf 0.43, loc [263,712]): Text changed from "N4470" to "20.".
+- **`D0296`** (text, conf 0.42, loc [263,724]): Text changed from "2"x3"" to "22.".
+- **`D0297`** (text, conf 0.42, loc [186,50]): Text changed from "(BY" to "27-PY-0001BB      SP".
+- **`D0298`** (text, conf 0.41, loc [263,744]): Text changed from "N4471" to "24.".
+
+### Added (11)
+
+- **`D0422`** (text, conf 1.00, loc [114,90]): New text appeared: "OVERRIDE".
+- **`D0423`** (text, conf 1.00, loc [20,750]): New text appeared: "11.".
+- **`D0424`** (text, conf 1.00, loc [20,781]): New text appeared: "16.".
+- **`D0425`** (text, conf 1.00, loc [20,794]): New text appeared: "17.".
+- **`D0426`** (text, conf 1.00, loc [263,750]): New text appeared: "25.".
+- **`D0427`** (setpoint, conf 1.00, loc [181,31]): New setpoint appeared: "SP 108.5".
+- **`D0428`** (text, conf 1.00, loc [26,139]): New text appeared: "EXPORT COMPRESSOR INLET HEADER".
+- **`D0429`** (text, conf 1.00, loc [26,48]): New text appeared: "FROM 27-PIT-0001B IN 3RD STAGE".
+- **`D0430`** (text, conf 1.00, loc [26,60]): New text appeared: "DISCHARGE HEADER".
+- **`D0431`** (text, conf 1.00, loc [114,62]): New text appeared: "OVERRIDE".
+- **`D0432`** (text, conf 1.00, loc [32,67]): New text appeared: "27-900001-001".
+
+### Removed (123)
+
+- **`D0299`** (text, conf 1.00, loc [804,684]): Text "WP-037    CONSTRUCTION OF NEW PROCESS MODULE R510." was removed.
+- **`D0300`** (text, conf 1.00, loc [804,690]): Text "DELETED." was removed.
+- **`D0301`** (text, conf 1.00, loc [802,672]): Text "WORK PACKS:" was removed.
+- **`D0302`** (text, conf 1.00, loc [1105,214]): Text "GAS LIFT" was removed.
+- **`D0303`** (tag, conf 1.00, loc [983,130]): Tag "26BL9075" was removed.
+- **`D0304`** (tag, conf 1.00, loc [776,583]): Tag "26GT9177" was removed.
+- **`D0305`** (tag, conf 1.00, loc [1038,116]): Tag "26GT9176" was removed.
+- **`D0306`** (text, conf 1.00, loc [1111,412]): Text "40-900003-001" was removed.
+- **`D0307`** (text, conf 1.00, loc [1110,461]): Text "40-900003-001" was removed.
+- **`D0308`** (text, conf 1.00, loc [813,354]): Text "3"-PV-26-9127-GD20S-03" was removed.
+- **`D0309`** (text, conf 1.00, loc [758,452]): Text "3"-PV-26-9126-GD20S-03" was removed.
+- **`D0310`** (text, conf 1.00, loc [1068,347]): Text "2"-WC-40-9039-EC11S-00" was removed.
+- **`D0311`** (text, conf 1.00, loc [1020,443]): Text "2"-WC-40-9038-EC11S-00" was removed.
+- **`D0312`** (text, conf 1.00, loc [927,412]): Text "N4473" was removed.
+- **`D0313`** (text, conf 1.00, loc [929,454]): Text "N4472" was removed.
+- **`D0314`** (text, conf 1.00, loc [978,459]): Text "N4474" was removed.
+- **`D0315`** (text, conf 1.00, loc [978,410]): Text "N4475" was removed.
+- **`D0316`** (text, conf 1.00, loc [962,405]): Text "N4476" was removed.
+- **`D0317`** (text, conf 1.00, loc [837,383]): Text "TIT" was removed.
+- **`D0318`** (text, conf 1.00, loc [834,389]): Text "9211" was removed.
+- **`D0319`** (text, conf 1.00, loc [834,366]): Text "9211" was removed.
+- **`D0320`** (setpoint, conf 1.00, loc [851,366]): Setpoint "L:40" was removed.
+- **`D0321`** (setpoint, conf 1.00, loc [850,358]): Setpoint "H:145" was removed.
+- **`D0322`** (text, conf 1.00, loc [939,315]): Text "TUBE RUPTURE" was removed.
+- **`D0323`** (spec_value, conf 1.00, loc [939,322]): Spec_value "SET PRESSURE=10 bar g" was removed.
+- **`D0324`** (text, conf 1.00, loc [1105,322]): Text "TO LP FLARE" was removed.
+- **`D0325`** (text, conf 1.00, loc [1105,393]): Text "COOLING MEDIUM" was removed.
+- **`D0326`** (text, conf 1.00, loc [1105,399]): Text "RETURN FROM BALANCE" was removed.
+- **`D0327`** (text, conf 1.00, loc [1105,405]): Text "LINE COOLER" was removed.
+- **`D0328`** (text, conf 1.00, loc [1105,448]): Text "COOLING MEDIUM SUPPLY" was removed.
+- **`D0329`** (text, conf 1.00, loc [1105,454]): Text "TO BALANCE LINE COOLER" was removed.
+- **`D0330`** (tag, conf 1.00, loc [1025,403]): Tag "40GB9174" was removed.
+- **`D0331`** (text, conf 1.00, loc [934,436]): Text "(BY COMPRESSOR" was removed.
+- **`D0332`** (text, conf 1.00, loc [945,443]): Text "VENDOR)" was removed.
+- **`D0333`** (tag, conf 1.00, loc [1078,401]): Tag "40BL9175" was removed.
+- **`D0334`** (text, conf 1.00, loc [789,364]): Text "PDIT" was removed.
+- **`D0335`** (text, conf 1.00, loc [788,369]): Text "9757" was removed.
+- **`D0336`** (text, conf 1.00, loc [788,343]): Text "9757" was removed.
+- **`D0337`** (text, conf 1.00, loc [790,334]): Text "PDI" was removed.
+- **`D0338`** (text, conf 1.00, loc [788,441]): Text "9757" was removed.
+- **`D0339`** (tag, conf 1.00, loc [892,434]): Tag "26GT9281" was removed.
+- **`D0340`** (text, conf 1.00, loc [753,385]): Text "HIGH" was removed.
+- **`D0341`** (text, conf 1.00, loc [890,445]): Text "LOW POINT" was removed.
+- **`D0342`** (tag, conf 1.00, loc [1009,469]): Tag "40GT9176" was removed.
+- **`D0343`** (text, conf 1.00, loc [1034,302]): Text "PSE" was removed.
+- **`D0344`** (text, conf 1.00, loc [1032,308]): Text "9216" was removed.
+- **`D0345`** (text, conf 1.00, loc [1064,308]): Text "9216" was removed.
+- **`D0346`** (text, conf 1.00, loc [1067,300]): Text "PSI" was removed.
+- **`D0347`** (text, conf 1.00, loc [950,364]): Text "PIT" was removed.
+- **`D0348`** (text, conf 1.00, loc [948,370]): Text "9759" was removed.
+- **`D0349`** (text, conf 1.00, loc [902,370]): Text "9759" was removed.
+- **`D0350`** (text, conf 1.00, loc [931,430]): Text "BALANCE LINE COOLER" was removed.
+- **`D0351`** (setpoint, conf 1.00, loc [764,147]): Setpoint "H:235" was removed.
+- **`D0352`** (text, conf 1.00, loc [351,550]): Text "FOR OIL" was removed.
+- **`D0353`** (text, conf 1.00, loc [386,550]): Text "FOR OIL" was removed.
+- **`D0354`** (text, conf 1.00, loc [763,462]): Text "BALANCE LINE" was removed.
+- **`D0355`** (text, conf 1.00, loc [755,416]): Text "BALANCE LINE" was removed.
+- **`D0356`** (setpoint, conf 1.00, loc [918,362]): Setpoint "H: 5" was removed.
+- **`D0357`** (setpoint, conf 1.00, loc [918,358]): Setpoint "HH: 8.5" was removed.
+- **`D0358`** (text, conf 1.00, loc [994,290]): Text "PIT" was removed.
+- **`D0359`** (text, conf 1.00, loc [992,296]): Text "9215" was removed.
+- **`D0360`** (text, conf 1.00, loc [954,296]): Text "9215" was removed.
+- **`D0361`** (text, conf 1.00, loc [982,375]): Text "4"-WC-26-9128-EC11S-00" was removed.
+- **`D0362`** (text, conf 1.00, loc [938,334]): Text "PSE" was removed.
+- **`D0363`** (text, conf 1.00, loc [936,340]): Text "9758" was removed.
+- **`D0364`** (text, conf 1.00, loc [910,340]): Text "9758" was removed.
+- **`D0365`** (text, conf 1.00, loc [912,332]): Text "PSI" was removed.
+- **`D0366`** (text, conf 1.00, loc [1028,282]): Text "TUBE RUPTURE" was removed.
+- **`D0367`** (spec_value, conf 1.00, loc [1028,288]): Spec_value "SET PRESSURE=10 barg" was removed.
+- **`D0368`** (text, conf 1.00, loc [946,390]): Text "FB/" was removed.
+- **`D0369`** (text, conf 1.00, loc [890,451]): Text "NOTE 33" was removed.
+- **`D0370`** (tag, conf 1.00, loc [855,469]): Tag "26GT9327" was removed.
+- **`D0371`** (text, conf 1.00, loc [993,483]): Text "LOW POINT" was removed.
+- **`D0372`** (text, conf 1.00, loc [978,474]): Text "NOTE 33" was removed.
+- **`D0373`** (text, conf 1.00, loc [1057,438]): Text "LOW POINT" was removed.
+- **`D0374`** (text, conf 1.00, loc [1049,433]): Text "NOTE 33" was removed.
+- **`D0375`** (text, conf 1.00, loc [857,407]): Text "4"x3"" was removed.
+- **`D0376`** (text, conf 1.00, loc [821,407]): Text "3"x4"" was removed.
+- **`D0377`** (text, conf 1.00, loc [852,480]): Text "LOW POINT" was removed.
+- **`D0378`** (text, conf 1.00, loc [853,486]): Text "NOTE 33" was removed.
+- **`D0379`** (text, conf 1.00, loc [1082,346]): Text "EC11S AC11S" was removed.
+- **`D0380`** (text, conf 1.00, loc [1127,432]): Text "9010" was removed.
+- **`D0381`** (tag, conf 1.00, loc [1054,386]): Tag "40CH9316" was removed.
+- **`D0382`** (tag, conf 1.00, loc [1049,424]): Tag "40GT9137" was removed.
+- **`D0383`** (text, conf 1.00, loc [942,405]): Text "N4480" was removed.
+- **`D0384`** (tag, conf 1.00, loc [820,462]): Tag "26BL9333" was removed.
+- **`D0385`** (tag, conf 1.00, loc [882,401]): Tag "26BL9335" was removed.
+- **`D0386`** (text, conf 1.00, loc [1069,321]): Text "FB LO" was removed.
+- **`D0387`** (text, conf 1.00, loc [1109,337]): Text "4"-VF-43-9033-AC11S-00" was removed.
+- **`D0388`** (text, conf 1.00, loc [1063,340]): Text "4"BLEC61J" was removed.
+- **`D0389`** (text, conf 1.00, loc [881,406]): Text "3"BLGD60J" was removed.
+- **`D0390`** (text, conf 1.00, loc [891,440]): Text "1"GTGD10J" was removed.
+- **`D0391`** (text, conf 1.00, loc [818,466]): Text "3"BLGD60J" was removed.
+- **`D0392`** (text, conf 1.00, loc [854,473]): Text "1"GTGD10J" was removed.
+- **`D0393`** (text, conf 1.00, loc [905,485]): Text "2"GBGC11J" was removed.
+- **`D0394`** (text, conf 1.00, loc [1008,474]): Text "2"GTFC11J" was removed.
+- **`D0395`** (text, conf 1.00, loc [1079,406]): Text "2"BLFC61J" was removed.
+- **`D0396`** (text, conf 1.00, loc [1059,385]): Text "2"CHEC51J" was removed.
+- **`D0397`** (text, conf 1.00, loc [1048,428]): Text "2"GTFC11J" was removed.
+- **`D0398`** (text, conf 1.00, loc [803,571]): Text "1"GBGC11J" was removed.
+- **`D0399`** (text, conf 1.00, loc [834,158]): Text "1"GTGC11J" was removed.
+- **`D0400`** (text, conf 1.00, loc [1037,120]): Text "1"GTGC11J" was removed.
+- **`D0401`** (text, conf 1.00, loc [1036,153]): Text "1"GTGC11J" was removed.
+- **`D0402`** (text, conf 1.00, loc [744,384]): Text "1"GTGD10J" was removed.
+- **`D0403`** (tag, conf 1.00, loc [971,360]): Tag "26GT9323" was removed.
+- **`D0404`** (text, conf 1.00, loc [991,354]): Text "HIGH POINT" was removed.
+- **`D0405`** (tag, conf 1.00, loc [1026,393]): Tag "40GT9318" was removed.
+- **`D0406`** (text, conf 1.00, loc [1000,444]): Text "EC11S" was removed.
+- **`D0407`** (text, conf 1.00, loc [982,438]): Text "900#" was removed.
+- **`D0408`** (text, conf 1.00, loc [982,444]): Text "316SS" was removed.
+- **`D0409`** (text, conf 1.00, loc [1000,394]): Text "EC11S" was removed.
+- **`D0410`** (text, conf 1.00, loc [982,388]): Text "900#" was removed.
+- **`D0411`** (text, conf 1.00, loc [982,394]): Text "316SS" was removed.
+- **`D0412`** (text, conf 1.00, loc [1093,296]): Text "959" was removed.
+- **`D0413`** (text, conf 1.00, loc [1080,312]): Text "WP-037 WP-203" was removed.
+- **`D0414`** (text, conf 1.00, loc [1098,307]): Text "M520" was removed.
+- **`D0415`** (text, conf 1.00, loc [1086,307]): Text "R510" was removed.
+- **`D0416`** (text, conf 1.00, loc [822,343]): Text "9757" was removed.
+- **`D0417`** (text, conf 1.00, loc [838,335]): Text "FLOW" was removed.
+- **`D0418`** (text, conf 1.00, loc [838,340]): Text "COMPENSATION" was removed.
+- **`D0419`** (text, conf 1.00, loc [1080,422]): Text "OPP" was removed.
+- **`D0420`** (text, conf 1.00, loc [1103,424]): Text "ZSC" was removed.
+- **`D0421`** (text, conf 1.00, loc [1089,432]): Text "9010" was removed.
