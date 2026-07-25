@@ -89,7 +89,7 @@ what separates a real delta engine from a diff tool.
 
 ```
 src/
-  ingest/        FormatAdapter interface + pdf_native / pdf_scanned / dwg adapters
+  ingest/        FormatAdapter interface + pdf_native / pdf_scanned / dwg / plaintext adapters
   canonical/      format-agnostic CanonicalDocument (pages -> lines -> bbox)
   delta/          align.py (matching) -> engine.py (classify+confidence) -> report.py (render)
   chat/           index.py (retrieval) -> llm.py (provider-agnostic) -> answer.py (grounded answer)
@@ -97,12 +97,32 @@ src/
   cli.py          `run` and `chat` commands, wires everything with tracing
 eval/
   datasets/pair_001/   hand-labeled ground truth + sample-precision review + QA set
-  metrics.py, run_eval.py
+  metrics.py, run_eval.py, cost_latency_report.py
 ```
 
 Adding a 4th ingestion format means writing one new `FormatAdapter` subclass
 and registering it in `src/ingest/base.py:detect_and_load` — nothing else
 changes, because delta/chat/eval only ever depend on `CanonicalDocument`.
+This isn't just asserted: `src/ingest/plaintext.py` is a real 4th adapter
+(`.txt`), added after the original three-format build with zero changes to
+`src/delta/*`. `tests/test_ingest_plaintext.py` runs a real `compute_delta()`
+over two ingested `.txt` revisions to prove it end-to-end.
+
+## Cost & latency budget
+
+`make budget` (`eval/cost_latency_report.py`) runs the QA set through the
+live grounded-chat path with per-question tracing and prints/writes
+`eval/cost_latency_report.md`. Latest run (Groq `llama-3.3-70b-versatile`,
+6 questions):
+
+- Avg retrieval latency: 2.3 ms (TF-IDF over ~1,500 chunks — not the bottleneck)
+- Avg LLM call latency: 598.5 ms (effectively 100% of total request time)
+- Avg cost per question: $0.000402 → **~$4.02/month at an illustrative 10,000
+  questions/month**, no caching
+
+Retrieval is free and fast; all latency and marginal cost is the LLM call —
+which is exactly why the LLM boundary is drawn where it is (see "Design
+decisions" below): everything upstream is deterministic and free to re-run.
 
 ## Design decisions and trade-offs
 
@@ -187,28 +207,33 @@ Run `make eval` (or `python -m eval.run_eval`) to reproduce these numbers.
   words of adjacent notes) where several short, similarly-positioned
   fragments compete for the same match.
 
-**Grounded chat, real LLM (Groq `llama-3.3-70b-versatile`, stable across 3
-runs): answer correctness 0.667 (4/6), groundedness 0.83–1.0 (varies slightly
-run to run).** With the no-key mock fallback, answer correctness was 0.5 (3/6)
-for a *different* reason (see below) — the real-LLM number is the one that
-matters and is the one to reproduce (`LLM_PROVIDER=groq` + `GROQ_API_KEY` in
-`.env`).
+**Grounded chat, real LLM (Groq `llama-3.3-70b-versatile`): answer
+correctness 1.000 (6/6), groundedness 1.000, stable across 2 verification
+runs after a prompt fix (see below).** With the no-key mock fallback, answer
+correctness is 0.5 (3/6) for a *different* reason (see below) — the real-LLM
+number is the one that matters and is the one to reproduce
+(`LLM_PROVIDER=groq` + `GROQ_API_KEY` in `.env`).
 
-- The 2 consistent misses (QA05, QA06) are the model *hedging* — it retrieves
-  the correct supporting chunk (visible in the trace: e.g. `[D0329]` for the
-  balance-line-cooler question) but answers "the context does not contain
-  enough information" anyway rather than committing. This is arguably the
-  system erring in the safe direction for a grounded-chat requirement
-  (under-claiming, not hallucinating) — but it does cost answer-correctness
-  points. Lowering temperature further or tightening the system prompt's
-  "say so if unsupported" wording would likely help; not tuned further given
-  the time box.
-- Groundedness dips to 0.83 on some runs because the model occasionally
-  writes its own hedge phrase inside brackets, e.g. `[No citation available]`
-  — technically not a tag copied from context, so the citation-validator
-  correctly flags it as unverifiable. Not a fabricated citation to real
-  content, just the model's hedge language landing inside the same bracket
-  syntax real citations use.
+- **Originally 0.667 (4/6), fixed and re-measured.** The 2 consistent misses
+  (QA05, QA06) were the model *hedging* — it retrieved the correct supporting
+  chunk (visible in the trace: e.g. `[D0329]` for the balance-line-cooler
+  question) but answered "the context does not contain enough information"
+  anyway instead of committing. Root cause: the system prompt's "say so if
+  unsupported" instruction (`src/chat/answer.py:SYSTEM_PROMPT`) was easy to
+  over-apply to any question whose answer wasn't spelled out verbatim. Fixed
+  by narrowing that rule to only trigger when *no* retrieved passage relates
+  to the question at all, and explicitly telling the model not to hedge on a
+  relevant-but-not-verbatim passage. Re-ran `make eval` twice after the
+  change: 1.000/1.000 both times, up from the 0.667 baseline — a measured
+  fix, not a guessed one.
+- Groundedness previously dipped to 0.83 on some runs because the model
+  occasionally wrote its own hedge phrase inside brackets, e.g. `[No citation
+  available]` — technically not a tag copied from context, so the
+  citation-validator correctly flagged it as unverifiable. Not a fabricated
+  citation to real content, just hedge language landing inside the same
+  bracket syntax real citations use; not observed in the 2 verification runs
+  since the prompt fix above, though the underlying "model writes something
+  bracket-shaped that isn't a citation" case is still possible in principle.
 - **Two real bugs were only caught by testing against a live model, not the
   mock:** (1) an earlier citation format used square brackets inside the tag
   itself (`pid_a:p1@[27,539]`), which nested with the `[...]` wrapper the LLM

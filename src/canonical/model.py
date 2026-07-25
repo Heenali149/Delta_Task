@@ -36,7 +36,7 @@ class Page:
 class CanonicalDocument:
     pid: str
     """Resolvable document identifier (here: the sample file path/name)."""
-    source_format: Literal["pdf_native", "pdf_scanned", "dwg"]
+    source_format: Literal["pdf_native", "pdf_scanned", "dwg", "text"]
     revision_label: str
     pages: list[Page] = field(default_factory=list)
 

@@ -23,8 +23,10 @@ Rules:
 value that follows "tag:" on that passage's line -- do not include the word "tag:" itself, quotes, \
 or any other words inside the brackets. Never reuse a tag from a different passage, never invent \
 one, and never copy an example tag from these instructions.
-- If the context does not contain enough information to answer, say so explicitly instead of \
-guessing. Never invent a citation.
+- Only say the context is insufficient if, after checking every passage, none of them actually \
+relate to what's being asked. If a passage does relate to the question, answer directly from it -- \
+do not hedge just because it doesn't spell out the answer in those exact words. Never invent a \
+citation.
 - Be concise."""
 
 # Citation tags (src/chat/index.py:Chunk.citation) are deliberately free of

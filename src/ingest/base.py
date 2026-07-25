@@ -37,9 +37,10 @@ def detect_and_load(path: str | Path, pid: str, revision_label: str) -> Canonica
     from src.ingest.pdf_native import PdfNativeAdapter
     from src.ingest.pdf_scanned import PdfScannedAdapter
     from src.ingest.dwg import DwgAdapter
+    from src.ingest.plaintext import PlainTextAdapter
 
     path = Path(path)
-    adapters: list[FormatAdapter] = [PdfNativeAdapter(), PdfScannedAdapter(), DwgAdapter()]
+    adapters: list[FormatAdapter] = [PdfNativeAdapter(), PdfScannedAdapter(), DwgAdapter(), PlainTextAdapter()]
 
     candidates = [a for a in adapters if a.can_handle(path)]
     if not candidates:
