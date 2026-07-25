@@ -12,12 +12,20 @@ what works, what's stubbed, and what's honestly still broken.
 
 ```bash
 python -m pip install -r requirements.txt
-cp .env.example .env        # optionally add OPENAI_API_KEY; runs fine without one (mock LLM fallback)
+cp .env.example .env        # optionally add an API key; runs fine without one (mock LLM fallback)
 
 make run     # ingest data/samples pair -> output/pair_001/{delta.json, delta_report.md}
 make chat    # interactive grounded chat over that pair
 make eval    # prints the eval scorecard
 ```
+
+`LLM_PROVIDER` in `.env` selects the chat backend: `openai`, `groq`, or `mock`
+(the default when no key is set for the selected provider). Groq's API is
+OpenAI-wire-compatible, so `GroqClient` just points the `openai` SDK at a
+different `base_url` — see `src/chat/llm.py`. This repo was actually
+exercised end-to-end against real Groq (`llama-3.3-70b-versatile`) calls, not
+just the mock fallback; see "Known limitations" for the real numbers and two
+genuine bugs that only a real model surfaced.
 
 No `make`? The Makefile targets are one-liners — run the `python -m src.cli ...` /
 `python -m eval.run_eval` commands directly (see `Makefile`).
@@ -35,7 +43,7 @@ Every `run` and `chat` invocation writes a full JSON trace to `traces/`
 | DWG ingestion | **Stub.** Same `FormatAdapter` interface, no sample file and no time to stand up an ODA/`ezdxf` conversion path. See `src/ingest/dwg.py` docstring for the intended design. |
 | Delta engine | **Real, deterministic**, no LLM. |
 | Delta report | **Real.** Markdown + JSON. |
-| Grounded chat | **Real.** TF-IDF retrieval (scikit-learn) + swappable LLM client (OpenAI or a labeled mock fallback). |
+| Grounded chat | **Real, tested against a live LLM.** TF-IDF retrieval (scikit-learn) + swappable LLM client (OpenAI, Groq, or a labeled mock fallback). |
 | Observability | **Real.** Homegrown JSON tracer + structured JSON logs (see below for why homegrown). |
 | Eval harness | **Real**, runnable, self-contained. |
 | Delta markup (bonus) | **Not built.** `make markup` prints the reason and the intended design instead of pretending. |
@@ -155,18 +163,49 @@ Run `make eval` (or `python -m eval.run_eval`) to reproduce these numbers.
   words of adjacent notes) where several short, similarly-positioned
   fragments compete for the same match.
 
-**Grounded chat: answer correctness 0.5 (3/6), groundedness 1.0 (no hallucinated
-citations) — using the no-API-key mock LLM.** All 3 misses share one cause:
-TF-IDF ranks a handful of short, generic-word delta-report chunks (containing
-words like "COMPRESSOR" or "VENDOR") above the actual data-table row that
-answers the question, so the correct row falls outside the top-k retrieved
-context. This is a retrieval-quality limitation, evidenced directly by the
-eval run (`eval/run_eval.py` prints exactly which chunks were retrieved).
-Groundedness is unaffected — the system never cites something outside its
-retrieved context, it just sometimes retrieves the wrong context. With a real
-OpenAI key, answer correctness would very likely still miss the same 3 unless
-retrieval is fixed, since the relevant row genuinely isn't in the model's
-context window for those questions.
+**Grounded chat, real LLM (Groq `llama-3.3-70b-versatile`, stable across 3
+runs): answer correctness 0.667 (4/6), groundedness 0.83–1.0 (varies slightly
+run to run).** With the no-key mock fallback, answer correctness was 0.5 (3/6)
+for a *different* reason (see below) — the real-LLM number is the one that
+matters and is the one to reproduce (`LLM_PROVIDER=groq` + `GROQ_API_KEY` in
+`.env`).
+
+- The 2 consistent misses (QA05, QA06) are the model *hedging* — it retrieves
+  the correct supporting chunk (visible in the trace: e.g. `[D0329]` for the
+  balance-line-cooler question) but answers "the context does not contain
+  enough information" anyway rather than committing. This is arguably the
+  system erring in the safe direction for a grounded-chat requirement
+  (under-claiming, not hallucinating) — but it does cost answer-correctness
+  points. Lowering temperature further or tightening the system prompt's
+  "say so if unsupported" wording would likely help; not tuned further given
+  the time box.
+- Groundedness dips to 0.83 on some runs because the model occasionally
+  writes its own hedge phrase inside brackets, e.g. `[No citation available]`
+  — technically not a tag copied from context, so the citation-validator
+  correctly flags it as unverifiable. Not a fabricated citation to real
+  content, just the model's hedge language landing inside the same bracket
+  syntax real citations use.
+- **Two real bugs were only caught by testing against a live model, not the
+  mock:** (1) an earlier citation format used square brackets inside the tag
+  itself (`pid_a:p1@[27,539]`), which nested with the `[...]` wrapper the LLM
+  was told to use and broke a non-recursive parser on real model output —
+  fixed by making the tag delimiter-free (`pid_a:p1@27x539`, see
+  `src/chat/index.py:Chunk.citation`). (2) the system prompt's own worked
+  example (`"the duty is 776 kW [pid_a:p1@164x551]"`) happened to describe
+  the *actual* real duty value in the sample pair, so the model copied that
+  literal example into its answer instead of the real retrieved citation —
+  fixed by removing the concrete example from the prompt entirely. Neither
+  bug was visible with the mock LLM, since the mock never generates novel
+  text — a concrete argument for why "tested against mock only" is not the
+  same as "tested."
+
+With the **mock fallback** (no key / `LLM_PROVIDER=mock`), the 3 misses (QA01–03)
+are a retrieval-quality issue instead: TF-IDF ranks a few short, generic-word
+delta-report chunks (containing words like "COMPRESSOR" or "VENDOR") above
+the actual data-table row that answers the question, so the correct row falls
+outside the top-k retrieved context — and the mock's naive "quote the top-N
+literally" strategy can't recover from that the way a real LLM reading the
+full context window can (and does, per above).
 
 ## What we'd do next with more time
 
@@ -188,8 +227,13 @@ context window for those questions.
 ## Environment notes
 
 Built and tested on Windows with Python 3.14, no `tesseract`/`ezdxf` binaries
-available and no OpenAI key configured — hence the mock-LLM fallback path
-being exercised throughout this README's own numbers. `LLM_PROVIDER=openai`
-with `OPENAI_API_KEY` set will use real GPT calls; the client code is
-already there (`src/chat/llm.py:OpenAIClient`), just untested here for lack
-of a key.
+available. Both real LLM providers were actually exercised: `OpenAIClient`
+authenticates correctly but the available OpenAI key has no billing/quota
+(`429 insufficient_quota`) — that failure is what led to hardening the error
+handling in `src/cli.py` and `eval/metrics.py` (an LLM call failing now
+produces a finished trace with `had_error: true` and a clear message, not a
+crash). `GroqClient` (`llama-3.3-70b-versatile`, OpenAI-wire-compatible API)
+worked end-to-end and is what the real numbers in "Known limitations" above
+come from. Both clients share the same `_OpenAICompatibleClient` base in
+`src/chat/llm.py` — only the API key env var, default model, and base URL
+differ.

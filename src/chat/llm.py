@@ -1,8 +1,8 @@
 """Provider-agnostic LLM client. Swap providers via env var, never code.
 
-`LLM_PROVIDER` = openai | mock (default: openai, auto-falls-back to mock if
-no OPENAI_API_KEY is set so the rest of the system stays runnable without a
-key — the fallback is logged, never silent).
+`LLM_PROVIDER` = openai | groq | mock (default: openai, auto-falls-back to
+mock if the selected provider's API key isn't set so the rest of the system
+stays runnable without a key — the fallback is logged, never silent).
 
 This is the only place in the system where model non-determinism lives: the
 delta engine (src/delta/engine.py) and retrieval (src/chat/index.py) are
@@ -32,13 +32,18 @@ class LLMClient(ABC):
     def chat(self, system: str, user: str) -> LLMResponse: ...
 
 
-class OpenAIClient(LLMClient):
-    def __init__(self, model: str | None = None):
-        self.model = model or os.environ.get("LLM_MODEL", "gpt-4o-mini")
-        api_key = os.environ["OPENAI_API_KEY"]  # raises if unset; caller decides fallback
+class _OpenAICompatibleClient(LLMClient):
+    """Base for any provider that speaks the OpenAI chat-completions wire
+    format (OpenAI itself, Groq, and most other inference hosts). Only the
+    API key env var, default model, and base_url differ.
+    """
+
+    def __init__(self, api_key_env: str, default_model: str, base_url: str | None = None):
+        self.model = os.environ.get("LLM_MODEL") or default_model
+        api_key = os.environ[api_key_env]  # raises if unset; caller decides fallback
         from openai import OpenAI  # lazy import: don't require the package unless used
 
-        self._client = OpenAI(api_key=api_key)
+        self._client = OpenAI(api_key=api_key, base_url=base_url) if base_url else OpenAI(api_key=api_key)
 
     def chat(self, system: str, user: str) -> LLMResponse:
         resp = self._client.chat.completions.create(
@@ -56,6 +61,20 @@ class OpenAIClient(LLMClient):
         )
 
 
+class OpenAIClient(_OpenAICompatibleClient):
+    def __init__(self, model: str | None = None):
+        super().__init__("OPENAI_API_KEY", model or "gpt-4o-mini")
+
+
+class GroqClient(_OpenAICompatibleClient):
+    """Groq's API is OpenAI-wire-compatible, so this reuses the `openai`
+    SDK pointed at Groq's base_url instead of a separate client library.
+    """
+
+    def __init__(self, model: str | None = None):
+        super().__init__("GROQ_API_KEY", model or "llama-3.3-70b-versatile", base_url="https://api.groq.com/openai/v1")
+
+
 class MockClient(LLMClient):
     """Deterministic, extractive fallback used when no provider/key is
     configured. Not a "fake LLM pretending to be smart" — it explicitly
@@ -65,13 +84,12 @@ class MockClient(LLMClient):
     model = "mock"
 
     def chat(self, system: str, user: str) -> LLMResponse:
-        # `user` is the rendered prompt built by src/chat/answer.py, which
-        # embeds numbered context chunks as "[n] (citation) text". Extract the
-        # single highest-numbered... actually just the first (highest-scored)
-        # chunk and answer from it, quoting its citation verbatim.
+        # `user` is the rendered prompt built by src/chat/answer.py, which embeds
+        # context chunks as "tag: <citation> | text: <text>" lines (in retrieval-rank
+        # order). Quote the top few verbatim with their citation tags.
         import re
 
-        chunk_pattern = re.compile(r"^\[(\d+)\]\s*\(([^)]+)\)\s*(.+)$", re.M)
+        chunk_pattern = re.compile(r"^tag:\s*(\S+)\s*\|\s*text:\s*(.+)$", re.M)
         matches = chunk_pattern.findall(user)
         question_match = re.search(r"Question:\s*(.+)", user)
         question = question_match.group(1).strip() if question_match else ""
@@ -80,9 +98,9 @@ class MockClient(LLMClient):
             text = "I don't have enough retrieved context to answer that from the provided documents."
         else:
             top = matches[:6]
-            bullet_lines = [f"- {text.strip()} [{citation}]" for _, citation, text in top]
+            bullet_lines = [f"- {text.strip()} [{citation}]" for citation, text in top]
             text = (
-                f"[mock-llm fallback - no LLM API key configured]\n"
+                f"(mock-llm fallback - no LLM API key configured)\n"
                 f"Based on the most relevant retrieved passages for \"{question}\":\n"
                 + "\n".join(bullet_lines)
             )
@@ -91,19 +109,26 @@ class MockClient(LLMClient):
         )
 
 
+_PROVIDERS = {
+    "openai": ("OPENAI_API_KEY", OpenAIClient),
+    "groq": ("GROQ_API_KEY", GroqClient),
+}
+
+
 def get_llm_client(logger=None) -> LLMClient:
     provider = os.environ.get("LLM_PROVIDER", "openai").lower()
     if provider == "mock":
         return MockClient()
-    if provider == "openai":
-        if os.environ.get("OPENAI_API_KEY"):
+    if provider in _PROVIDERS:
+        key_env, client_cls = _PROVIDERS[provider]
+        if os.environ.get(key_env):
             try:
-                return OpenAIClient()
+                return client_cls()
             except Exception as e:  # ImportError (no `openai` pkg) or API init failure
                 if logger:
-                    logger.warning(f"OpenAI client unavailable ({e}); falling back to mock LLM.")
+                    logger.warning(f"{provider} client unavailable ({e}); falling back to mock LLM.")
                 return MockClient()
         if logger:
-            logger.warning("OPENAI_API_KEY not set; falling back to mock LLM.")
+            logger.warning(f"{key_env} not set; falling back to mock LLM.")
         return MockClient()
     raise ValueError(f"Unknown LLM_PROVIDER={provider!r}")

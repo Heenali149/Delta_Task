@@ -26,6 +26,8 @@ TRACE_DIR.mkdir(exist_ok=True)
 MODEL_PRICING_PER_1K = {
     "gpt-4o-mini": {"input": 0.00015, "output": 0.0006},
     "gpt-4o": {"input": 0.0025, "output": 0.01},
+    "llama-3.3-70b-versatile": {"input": 0.00059, "output": 0.00079},
+    "llama-3.1-8b-instant": {"input": 0.00005, "output": 0.00008},
     "mock": {"input": 0.0, "output": 0.0},
 }
 

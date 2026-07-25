@@ -78,17 +78,13 @@ def _ask_one(question: str, index: RetrievalIndex, trace: Trace):
     with trace.span("llm_call", model=llm.model) as s:
         result = answer_question(question, index, llm, k=12)
         trace.record_llm_call(
-            s, model=result.llm_response.model, prompt=build_prompt_preview(question, result),
+            s, model=result.llm_response.model, prompt=result.prompt,
             response=result.answer, input_tokens=result.llm_response.input_tokens,
             output_tokens=result.llm_response.output_tokens, fallback_used=result.llm_response.fallback_used,
         )
         s.attributes["citations_valid"] = result.citations_valid
         s.attributes["citations_invalid"] = result.citations_invalid
     return result
-
-
-def build_prompt_preview(question, result):
-    return f"Q: {question} | retrieved={len(result.retrieved)} chunks"
 
 
 def cmd_chat(args):

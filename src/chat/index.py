@@ -38,7 +38,12 @@ class Chunk:
     def citation(self) -> str:
         if self.source == "delta_report":
             return self.chunk_id
-        loc = f"p{self.page_index + 1}" if self.bbox is None else f"p{self.page_index + 1}@[{self.bbox[0]:.0f},{self.bbox[1]:.0f}]"
+        # Deliberately delimiter-free (no brackets/parens/commas) -- this string
+        # gets wrapped in "(...)" by build_prompt() and then in "[...]" by the
+        # LLM's own citation format; any bracket/paren *inside* the citation
+        # nests with one of those wrappers and breaks a naive (non-recursive)
+        # parser on one end or the other. Caught by testing against a real LLM.
+        loc = f"p{self.page_index + 1}" if self.bbox is None else f"p{self.page_index + 1}@{self.bbox[0]:.0f}x{self.bbox[1]:.0f}"
         return f"{self.source}:{loc}"
 
 
