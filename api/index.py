@@ -20,13 +20,14 @@ from dotenv import load_dotenv
 
 load_dotenv(REPO_ROOT / ".env")
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, Response, jsonify, render_template, request
 
 from src.canonical.model import CanonicalDocument
 from src.chat.answer import answer_question
 from src.chat.index import RetrievalIndex
 from src.chat.llm import get_llm_client
 from src.delta.engine import DeltaItem, DeltaResult
+from src.delta.report import CHANGE_TYPE_ORDER
 
 DATA_DIR = Path(__file__).resolve().parent / "data" / "pair_001"
 
@@ -47,20 +48,45 @@ def _load_session():
     return _cache["index"], _cache["delta"], _cache["doc_a"], _cache["doc_b"]
 
 
+def _grouped_items(delta: DeltaResult) -> list[dict]:
+    """Same page -> change_type grouping/sort as src/delta/report.py's Markdown
+    renderer, but as structured data for the template instead of a Markdown
+    string -- avoids shipping raw '**`D0001`**' markdown syntax to the page.
+    """
+    by_page: dict[int, list[DeltaItem]] = {}
+    for item in delta.items:
+        by_page.setdefault(item.page_index, []).append(item)
+
+    pages = []
+    for page_idx in sorted(by_page):
+        groups = []
+        for ct in CHANGE_TYPE_ORDER:
+            group = sorted((i for i in by_page[page_idx] if i.change_type == ct), key=lambda i: -i.confidence)
+            if group:
+                groups.append({"change_type": ct, "changes": group})
+        pages.append({"index": page_idx, "groups": groups})
+    return pages
+
+
 @app.route("/")
 def home():
     index, delta, doc_a, doc_b = _load_session()
-    report_md = (DATA_DIR / "delta_report.md").read_text(encoding="utf-8")
     llm = get_llm_client()
     return render_template(
         "index.html",
         pid_a=delta.pid_a,
         pid_b=delta.pid_b,
         summary=delta.summary(),
-        report_md=report_md,
+        pages=_grouped_items(delta),
         llm_model=llm.model,
         llm_is_mock=llm.model == "mock",
     )
+
+
+@app.route("/report.md")
+def report_md():
+    text = (DATA_DIR / "delta_report.md").read_text(encoding="utf-8")
+    return Response(text, mimetype="text/markdown")
 
 
 @app.route("/api/summary")
