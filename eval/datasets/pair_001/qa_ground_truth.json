@@ -1,0 +1,11 @@
+{
+  "pair_id": "pair_001",
+  "items": [
+    {"id": "QA01", "question": "What is the compressor duty in kW for the Lift Gas compressor, 26-KA-901?", "expect_answer_contains": ["776"], "expect_source": "pid_a"},
+    {"id": "QA02", "question": "What is the compressor duty in kW for the Export Gas compressor, 26-KA-902?", "expect_answer_contains": ["1835"], "expect_source": "pid_b"},
+    {"id": "QA03", "question": "Who is the vendor for both compressors?", "expect_answer_contains": ["MAN ENERGY"], "expect_source": "either"},
+    {"id": "QA04", "question": "What changed in the primary seal gas take-off point between the two P&IDs?", "expect_answer_contains": ["8TH", "4TH"], "expect_source": "delta_report"},
+    {"id": "QA05", "question": "Does the Export Gas compressor P&ID have a balance line cooler?", "expect_answer_contains": ["9211", "BALANCE"], "expect_source": "delta_report"},
+    {"id": "QA06", "question": "What is the main equipment tag number change between the two compressors?", "expect_answer_contains": ["26-KA-901", "26-KA-902"], "expect_source": "delta_report"}
+  ]
+}

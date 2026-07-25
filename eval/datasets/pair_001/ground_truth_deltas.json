@@ -1,0 +1,23 @@
+{
+  "pair_id": "pair_001",
+  "pid_a": "pair_001:lift_gas:A",
+  "pid_b": "pair_001:export_gas:B",
+  "notes": "Hand-labeled by reading both P&IDs directly (see data/samples/PROVENANCE.md). Each item is a real, verifiable difference between the Lift Gas (26-KA-901) and Export Gas (26-KA-902) compressor P&IDs. GT01/GT02 are deliberately kept even though the engine is known to mis-pair them (see eval scorecard failure notes) -- that's the point of an honest eval.",
+  "items": [
+    {"id": "GT01", "change_type": "modified", "item_type": "spec_value", "before_contains": "776", "after_contains": "1835", "description": "Compressor duty (kW): 776 (Lift) vs 1835 (Export)"},
+    {"id": "GT02", "change_type": "modified", "item_type": "spec_value", "before_contains": "19057", "after_contains": "62809", "description": "Flow rate (kg/h): 19057 (Lift) vs 62809 (Export)"},
+    {"id": "GT03", "change_type": "modified", "item_type": null, "before_contains": "9066A", "after_contains": "9027A", "description": "PSV tag renamed"},
+    {"id": "GT04", "change_type": "modified", "item_type": "note", "before_contains": "8TH STAGE", "after_contains": "(4TH", "description": "Primary seal gas take-off stage: 8th (Lift) vs 4th (Export)"},
+    {"id": "GT05", "change_type": "modified", "item_type": null, "before_contains": "SP = 257", "after_contains": "225.4", "description": "Blocked outlet setpoint: 257 barg (Lift) vs 225.4 barg (Export)"},
+    {"id": "GT06", "change_type": "modified", "item_type": "setpoint", "before_contains": "0.3", "after_contains": "0.7", "description": "PDIT high alarm setpoint changed"},
+    {"id": "GT07", "change_type": "modified", "item_type": "setpoint", "before_contains": "245", "after_contains": "214", "description": "PIT high-high setpoint: 245 (Lift) vs 214 (Export)"},
+    {"id": "GT08", "change_type": "modified", "item_type": "setpoint", "before_contains": "HH : 160", "after_contains": "HH : 150", "description": "TIT high-high setpoint: 160 (Lift) vs 150 (Export)"},
+    {"id": "GT09", "change_type": "modified", "item_type": null, "before_contains": "MCC", "after_contains": "NOT IN COMPRESSOR VENDOR SCOPE", "description": "VSD/MCC vendor-scope note differs (MCC in scope note dropped)"},
+    {"id": "GT10", "change_type": "modified", "item_type": null, "before_contains": "CONTROLLED WITH VSD", "after_contains": "OVERRIDE CONTROL", "description": "Anti-surge/pressure control philosophy differs (VSD-direct vs override control)"},
+    {"id": "GT11", "change_type": "modified", "item_type": "tag", "before_contains": "26-KA-901", "after_contains": "26-KA-902", "description": "Main compressor equipment tag"},
+    {"id": "GT12", "change_type": "modified", "item_type": null, "before_contains": "GAS LIFT COMPRESSOR", "after_contains": "GAS EXPORT COMPRESSOR", "description": "Service description text"},
+    {"id": "GT13", "change_type": "removed", "item_type": null, "before_contains": "9211", "after_contains": null, "description": "Balance-line cooler instrument (TIT-9211) present only in Lift Gas train"},
+    {"id": "GT14", "change_type": "added", "item_type": null, "before_contains": null, "after_contains": "OVERRIDE", "description": "Discharge-pressure override control concept present only in Export train"},
+    {"id": "GT15", "change_type": "modified", "item_type": "setpoint", "before_contains": "257 bar", "after_contains": "225", "description": "Design pressure downstream external system note (257 barg vs 225 bar g/150C)"}
+  ]
+}
