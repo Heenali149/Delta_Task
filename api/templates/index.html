@@ -75,6 +75,7 @@
   .msg.bot.err{border-color:#4a2430;color:var(--danger)}
   .cites{margin-top:8px;font-size:11px;color:var(--muted);font-family:var(--mono)}
   .cites .bad{color:var(--danger)}
+  .mock-note{font-size:11px;color:var(--warn);font-style:italic;margin-bottom:6px}
 
   .chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px}
   .chip{font-size:11.5px;color:var(--muted);border:1px solid var(--border);background:var(--panel-2);
@@ -175,10 +176,26 @@ const form = document.getElementById('askform');
 const input = document.getElementById('q');
 const sendBtn = document.getElementById('send');
 
+const MOCK_PREFIX = '(mock-llm fallback - no LLM API key configured)';
+
 function addMsg(role, text, cls) {
   const div = document.createElement('div');
   div.className = 'msg ' + role + (cls ? ' ' + cls : '');
-  div.textContent = text;
+
+  let body = text;
+  if (role === 'bot' && text.startsWith(MOCK_PREFIX)) {
+    const note = document.createElement('div');
+    note.className = 'mock-note';
+    note.textContent = 'mock mode — no LLM key configured, showing raw retrieved context';
+    div.appendChild(note);
+    body = text.slice(MOCK_PREFIX.length).trim();
+  }
+  // Table-extracted source text can carry long runs of literal spaces (column
+  // padding); collapse those for display without touching intentional line breaks.
+  const textNode = document.createElement('div');
+  textNode.textContent = body.replace(/[ \t]{2,}/g, ' ');
+  div.appendChild(textNode);
+
   chatEl.appendChild(div);
   chatEl.scrollTop = chatEl.scrollHeight;
   return div;
